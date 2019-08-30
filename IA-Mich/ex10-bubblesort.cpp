@@ -4,11 +4,16 @@
 #include <fstream>
 using namespace std;
 
+
 class Entry{
     public:
         string number;
         string name;
 };
+
+
+void bubblesort(Entry directory[], int num_of_entries);
+
 
 int main(){
     string input_line;
@@ -18,7 +23,7 @@ int main(){
     int firstSpace;
     string number;
     string name;
-    Entry directory[15];
+    Entry directory[10];
 
     fileInput.open("directory.txt"); // this tries to open a file called "filename"
 
@@ -48,11 +53,34 @@ int main(){
         }
     }
 
-
-    for(int i=0; i<15; i++){
+    for(int i=0; i<10; i++){
         cout << directory[i].number << " " << directory[i].name << endl;
     }
 
+    bubblesort(directory, 10);
+
+    for(int i=0; i<10; i++){
+        cout << directory[i].number << " " << directory[i].name << endl;
+    }
+
+
     return 0;
+}
+
+void bubblesort(Entry directory[], int num_of_entries){
+    int sort_num = 1;
+    Entry temp;
+
+    while(sort_num > 0){
+        sort_num = 0;
+        for(int i=0; i<9; i++){
+            if (directory[i].number > directory[i+1].number){
+            temp = directory[i];
+            directory[i] = directory[i+1];
+            directory[i+1] = temp;
+            sort_num++;
+            }
+        }
+    }
 }
 
